@@ -1,7 +1,7 @@
 import { useState } from "react"
 export default function MovieCard({movie, clicked}){
   const[emoji, setEmoji] = useState("🤍")
-  const[isWatched, setIsWatched] = useState("Not Watched 🫣")
+  const[isWatched, setIsWatched] = useState("🫣")
   function favorited(event){
     event.stopPropagation()
     if(emoji==="🤍"){
@@ -13,11 +13,11 @@ export default function MovieCard({movie, clicked}){
   }
   function watched(event){
     event.stopPropagation()
-    if (isWatched==="Not Watched 🫣"){
-      setIsWatched("Watched 👁️")
+    if (isWatched==="🫣"){
+      setIsWatched("👁️")
     }
     else{
-      setIsWatched("Not Watched 🫣")
+      setIsWatched("🫣")
     }
   }
   return(
