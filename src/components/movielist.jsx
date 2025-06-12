@@ -1,7 +1,7 @@
 import {useState} from "react"
 import MovieCard from "./moviecard"
 import CardModal from "./moviecardmodal"
-export default function MovieList({sortBy, results}){
+export default function MovieList({results}){
   const [selectedMovie, setSelectedMovie] = useState({})
   const [showModal, setShowModal] = useState(false);
   function closeModal(){

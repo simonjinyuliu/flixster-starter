@@ -63,7 +63,7 @@ export default function App() {
   }
   const sortedMovies = [...movies];
   if(sortOption==="title"){
-    sortedMovies.sort((a,b))
+    sortedMovies.sort((a,b) => a.title.localeCompare(b.title))
   }
   // This basically ensures that our home page is the first page of "nowplaying" movies
   useEffect(() => {
@@ -85,7 +85,7 @@ export default function App() {
       </div>
       <div className="wrapper">
         <MovieList
-          results={movies}
+          results={sortedMovies}
           sortBy={sortOption}
         />
       </div>
