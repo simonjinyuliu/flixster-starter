@@ -96,6 +96,10 @@ select{
     box-shadow: 10px 5px 5px #888;
     transition: box-shadow 0.15s;
 }
+.modal-movie-image{
+  display: flex;
+  height: 50%;
+}
 .watched{
     position: absolute;
     top: 8px;
@@ -124,10 +128,14 @@ select{
    align-items: center;
    border-radius: 10px;
 }
-.modal-content-container{
+.modal-content{
   display: flex;
-  margin-top: 20rem;
-  position: relative;
+  flex-direction: column;
+  gap: 0.9rem;
+  padding: 0.3rem;
+  object-fit: contain;
+  max-width: 100%;
+  max-height: 100%;
 }
 .image-container{
   max-width: 100%;
@@ -156,21 +164,22 @@ h2{
 .movie-rating{
   color: #f8f8f8;
 }
-.modal-content{
+.modal-content-container{
    display: flex;
    z-index: 1;
    flex-direction: column;
    background-color: black;
-   margin: 20% auto; 
+   margin: 45% auto; 
    color: #f8f8f8;
    padding: 20px;
    border: 1px solid #888;
    position: relative;
-   height: 50%;
-   width: 50%; 
+   max-width: 70%; 
+   max-height: 70%;
    border-radius: 10px;
    overflow: scroll;
    gap: 2rem;
+   justify-content: center;
 
 }
 footer{

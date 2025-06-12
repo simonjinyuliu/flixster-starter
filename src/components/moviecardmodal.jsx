@@ -1,6 +1,8 @@
 import { useState } from "react";
 export default function CardModal({movie, closeModal}){
   const[key, setKey] = useState("")
+  const[genre, setGenre] = useState("")
+  const[runTime, setRunTime] = useState()
   const options = {
       method: 'GET',
       headers: {
@@ -23,6 +25,19 @@ export default function CardModal({movie, closeModal}){
     }
   };
   youtubeTrailer(movie.id)
+  async function fetchMovieDetails(movie_id){
+    try{
+      const response = await fetch(`https://api.themoviedb.org/3/movie/${movie_id}`, options);
+      const data = await response.json()
+      const gen = data.genres[0].name
+      setGenre(gen)
+      setRunTime(data.runtime)
+    }
+    catch (error){
+      console.error("Fetch failed: ", error);
+    }
+  }
+  fetchMovieDetails(movie.id)
   return(
     <>
       <div className="modal" onClick={closeModal}>
@@ -33,9 +48,9 @@ export default function CardModal({movie, closeModal}){
             {/* add runtime to modal*/}
             <span className="modal-movie-release"><strong>Release date: </strong>{movie.release_date}</span>
             <span className="modal-movie-overview"><strong>Overview: </strong>{movie.overview}</span>
-            <span className="modal-movie-genres">{movie.genre_ids}</span>
-            <div className="trailer-container"><link className="trailer"></link></div>
+            <span className="modal-movie-genres"><strong>Movie genre: </strong>{genre}</span>
             <iframe width="560" height="315" src={`https://www.youtube.com/embed/${key}`} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <span className="modal-movie-runtime"><strong>Movie runtime: </strong>{runTime} mins</span>
             <button className="close-btn" onClick={closeModal}>Close</button>
           </div>
         </div>
