@@ -7,7 +7,7 @@ export default function SortDropDown({onSortDropDownChange}){
   <select onChange={sortDropDownChange}>
     <option value="" >Sort by...</option>
     <option value="title">{"Sort by Title(A-Z)"}</option>
-    <option value="release_dates">{"Sort by Release Date(Latest)"}</option>
+    <option value="release_date">{"Sort by Release Date(Latest)"}</option>
     <option value="vote_average" >{"Sort by ⭐️ ratings"}</option>
   </select>
   )

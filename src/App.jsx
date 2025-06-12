@@ -65,6 +65,9 @@ export default function App() {
   if(sortOption==="title"){
     sortedMovies.sort((a,b) => a.title.localeCompare(b.title))
   }
+  else if(sortOption==="release_date"){
+    sortedMovies.sort((a,b) => new Date(b.release_date) - new Date(a.release_date))
+  }
   // This basically ensures that our home page is the first page of "nowplaying" movies
   useEffect(() => {
     fetchNowPlaying(1);
