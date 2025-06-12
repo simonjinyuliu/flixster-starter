@@ -1,14 +1,15 @@
-export default function Sort({onSortChange}){
-  function sortChange(event){
-    const value = event.target.value;
-    return onSortChange(value)
+export default function SortDropDown({onSortDropDownChange}){
+  function sortDropDownChange(event){
+    const val = event.target.value;
+    return onSortDropDownChange(val)
   }
   return(
-  <select onChange={sortChange}>
-    <option value="">Sort by...</option>
+  <select onChange={sortDropDownChange}>
+    <option value="" >Sort by...</option>
     <option value="title">{"Sort by Title(A-Z)"}</option>
     <option value="release_dates">{"Sort by Release Date(Latest)"}</option>
-    <option value="vote_average">{"Sort by ⭐️ ratings"}</option>
+    <option value="vote_average" >{"Sort by ⭐️ ratings"}</option>
   </select>
   )
 }
+

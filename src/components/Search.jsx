@@ -1,16 +1,19 @@
-import {useState} from "react";
-export default function Search({searched, setClearClicked}){
+import {useEffect, useState} from "react";
+export default function Search({searched, clearSignal}){
   const[input, setInput] = useState("");
-  async function handleSubmbit(event){
+  // This function triggers the search based on user input.
+  async function handleSubmit(event){
     event.preventDefault()
-    console.log("SUBMIT CALLED from search.jsx")
-    setClearClicked(false)
     searched(input);
   }
   function searchResult(event){
     const value = event.target.value
     return setInput(value)
   }
+  // This helps with clearing input field by listening for changes to clearSignal(from App.jsx)
+  useEffect(() => {
+    setInput("")
+  }, [clearSignal])
   return(
     <>
       <div id="search-bar-container">
@@ -22,7 +25,7 @@ export default function Search({searched, setClearClicked}){
             value={input}
             onChange={searchResult}
           />
-          <button type="submit" onClick={handleSubmbit}>Search</button>
+          <button type="submit" onClick={handleSubmit}>Search</button>
         </form>
       </div>
     </>

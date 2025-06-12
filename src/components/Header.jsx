@@ -1,10 +1,10 @@
-import Sort from "./Sort"
-export default function Header({sorted}){
+import SortDropDown from "./Sort"
+export default function Header({onSortChange}){ 
   return(
     <>
       <header>
-        <h1>Netflizzy</h1>
-        <Sort onSortChange={sorted}/>
+        <h1>{"Netflizzy🍿"}</h1>
+        <SortDropDown onSortDropDownChange={onSortChange}/>
       </header>
     </>
   )
