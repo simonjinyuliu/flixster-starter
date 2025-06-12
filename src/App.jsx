@@ -4,6 +4,7 @@ import Header from "./components/Header.jsx";
 import MovieList from "./components/movielist";
 import Search from "./components/Search.jsx";
 import Footer from "./components/Footer.jsx";
+import SortDropDown from "./components/Sort.jsx";
 export default function App() {
   // I declared all the state variables that handled logic of my app.
   const [sortOption, setSortOption] = useState("");
@@ -61,6 +62,7 @@ export default function App() {
     setPage(nextPage)
     fetchNowPlaying(nextPage);
   }
+  // This handles the logic behind sorting movies based on users preference.
   const sortedMovies = [...movies];
   if(sortOption==="title"){
     sortedMovies.sort((a,b) => a.title.localeCompare(b.title))
@@ -68,14 +70,17 @@ export default function App() {
   else if(sortOption==="release_date"){
     sortedMovies.sort((a,b) => new Date(b.release_date) - new Date(a.release_date))
   }
-  // This basically ensures that our home page is the first page of "nowplaying" movies
+  else if(sortOption==="vote_average"){
+    sortedMovies.sort((a,b) => b.vote_average - a.vote_average)
+  }
+  // This ensures that our home page is the first page of "nowplaying" movies
   useEffect(() => {
     fetchNowPlaying(1);
   }, [])
   // rendering major components
   return (
     <div className="App">
-      <Header onSortChange={setSortOption} />
+      <Header />
       {/* <NavBar/> */}
       {/* I created a div for the form input field, clear button and search button for better styling. */}
       <div className="searching">
@@ -85,6 +90,7 @@ export default function App() {
             Now Playing
           </button>}
         </div>
+        <SortDropDown onSortDropDownChange={setSortOption}/>
       </div>
       <div className="wrapper">
         <MovieList

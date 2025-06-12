@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  background-color: black;
 }
 
 .App-header {
@@ -26,24 +27,24 @@
     flex-direction: column;
   }
 }
+#search-bar-container{
+  margin-left: 14rem;
+}
 header{
   display: flex;
   background-color: #888;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
 }
-h1{
-  margin-left: 2rem;
-}
 select{
-  margin-right:  10rem;
+  margin-right:  14rem;
 }
 .searching{
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   padding: 1rem;
   background-color: #888;
-  justify-content: start;
+  justify-content: space-between;
 }
 .clear-btn{
   display: flex;
@@ -71,6 +72,7 @@ select{
   display: flex;
   justify-content: center;
   background-color: black;
+  margin-bottom: 0.6rem;
 }
 .load-more{
   background-color: white;
@@ -94,6 +96,19 @@ select{
     border: none;
     box-shadow: 10px 5px 5px #888;
     transition: box-shadow 0.15s;
+}
+.watched{
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    font-size: 0.6rem;
+    cursor: pointer;
+    color: white;
+    z-index: 1;
+    background-color: transparent;
+}
+.watched:hover{
+  color: red;
 }
 .modal{
    display: flex; 
@@ -125,17 +140,6 @@ select{
   object-fit: contain;
   max-width: 100%;
   max-height: 100%;
-    /* width: 13rem;
-    height: 13rem; */
-    /* padding-left: 0.1rem;
-    padding-right: 0.1rem; */
-}
-.fav-btn{
-  background-color: black;
-  border: none;
-}
-.fav-btn:hover{
-  background-color: black;
 }
 .movie-info{
   display: flex;
