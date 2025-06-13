@@ -18,13 +18,12 @@
     width: 100%;
   }
 
-  .search-bar {
+  #search-and-sort{
     flex-direction: column;
-    gap: 10px;
+    align-items: center;
   }
-
-  .search-bar form {
-    flex-direction: column;
+  select{
+    margin: none;
   }
 }
 #search-bar-container{
@@ -40,7 +39,8 @@ header{
   align-items: center;
 }
 select{
-  margin-right:  14rem;
+  display: flex;
+  margin-right: 6rem;
 }
 #search-and-sort{
   display: flex;
@@ -66,9 +66,10 @@ select{
     display: flex; 
     flex-direction: column;
     color: white;
-   background-color: #888;
+   background-color: black;
    border-right: solid #888;
    margin-top: none;
+   gap: 2rem;
 }
 .search-movie-list{
   display: flex;
@@ -207,9 +208,6 @@ h2{
   display: flex;
   justify-content: center;
 }
-#sort-bar{
-  display: flex;
-}
 
 footer{
   display: flex;
@@ -220,3 +218,4 @@ footer{
   font-size: 2rem;
   justify-content: center;
 }
+
