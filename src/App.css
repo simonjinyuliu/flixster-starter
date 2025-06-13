@@ -28,7 +28,10 @@
   }
 }
 #search-bar-container{
-  margin-left: 14rem;
+  margin-left: 10rem;
+}
+#search-and-clear{
+  display: flex;
 }
 header{
   display: flex;
@@ -51,7 +54,19 @@ select{
 }
 .wrapper{
   display: flex;
+}
+#side-bar{
+  display: flex;
   flex-direction: column;
+  background-color: black;
+  /* border-top: solid black; */
+  width: 5rem;
+}
+#nav-btn{
+  color: white;
+   background-color: #888;
+   border-right: solid #888;
+   margin-top: none;
 }
 .search-movie-list{
   display: flex;
@@ -65,7 +80,7 @@ select{
     height: 100%;
     gap: 4rem;
     background-color: black;
-    padding: 2rem; 
+     
 }
 .load-more-container{
   display: flex;
@@ -95,10 +110,6 @@ select{
     border: none;
     box-shadow: 10px 5px 5px #888;
     transition: box-shadow 0.15s;
-}
-.modal-movie-image{
-  display: flex;
-  height: 50%;
 }
 .watched{
     position: absolute;
@@ -133,7 +144,6 @@ select{
   flex-direction: column;
   gap: 0.9rem;
   padding: 0.3rem;
-  object-fit: contain;
   max-width: 100%;
   max-height: 100%;
 }
@@ -164,6 +174,20 @@ h2{
 .movie-rating{
   color: #f8f8f8;
 }
+#modal-movie-image-container{
+  
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  border: none;
+}
+.modal-movie-image{
+  border-radius: 1.35rem;
+  object-fit: cover;
+  max-width: 100%;
+  max-height: 100%;
+}
+
 .modal-content-container{
    display: flex;
    z-index: 1;
@@ -182,6 +206,7 @@ h2{
    justify-content: center;
 
 }
+
 footer{
   background-color: black;
   color: #888;

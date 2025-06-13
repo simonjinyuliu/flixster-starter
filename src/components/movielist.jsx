@@ -1,7 +1,7 @@
 import {useState} from "react"
 import MovieCard from "./moviecard"
 import CardModal from "./moviecardmodal"
-export default function MovieList({results}){
+export default function MovieList({results, toggleFavorite, toggleWatched}){
   const [selectedMovie, setSelectedMovie] = useState({})
   const [showModal, setShowModal] = useState(false);
   function closeModal(){
@@ -13,7 +13,7 @@ export default function MovieList({results}){
     setShowModal(true)
   }
   const movieCardElements = results.map((element, index) => (
-        <MovieCard key={index} movie={element} clicked={() => openModal(element)}/>
+        <MovieCard key={index} movie={element} clicked={() => openModal(element)} onFavorite={toggleFavorite} onWatched={toggleWatched}/>
       ))
   return (
      <>

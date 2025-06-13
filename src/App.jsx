@@ -5,6 +5,7 @@ import MovieList from "./components/movielist";
 import Search from "./components/Search.jsx";
 import Footer from "./components/Footer.jsx";
 import SortDropDown from "./components/Sort.jsx";
+import SideBar from "./components/Sidebar.jsx";
 export default function App() {
   // I declared all the state variables that handled logic of my app.
   const [sortOption, setSortOption] = useState("");
@@ -14,6 +15,9 @@ export default function App() {
   const [page,setPage] = useState(1)
   const [selectedMovie, setSelectedMovie] = useState({})
   const [clearSignal, setClearSignal] = useState(0)
+  const [favoriteMovies, setFavoriteMovies] = useState([])
+  const [watchedMovies, setWatchedMovies] = useState([])
+  const [isHome, setIsHome] = useState(false)
   // This is used when fetching data from the TMDb api
   const options = {
       method: 'GET',
@@ -35,6 +39,9 @@ export default function App() {
   };
   // This function handles the logic behind search results
   async function handleSearch(input){
+    if(input === ""){
+      return
+    }
     setIsSearching(true)
     setSearchTerm(input)
     setPage(1)
@@ -62,6 +69,40 @@ export default function App() {
     setPage(nextPage)
     fetchNowPlaying(nextPage);
   }
+  //Sidebar functionality
+  function handleFavorite(movie){
+    const alreadyFavorited = favoriteMovies.some((fav) => fav.id===movie.id)
+    if (alreadyFavorited){
+      const updated = favoriteMovies.filter(fav => fav.id !== movie.id)
+      setFavoriteMovies(updated)
+    }
+    else{
+      setFavoriteMovies([...favoriteMovies, movie])
+    }
+  }
+  function goHomeFunc(){
+    setIsHome(true)
+    setMovies([])
+    fetchNowPlaying(1)
+  }
+  function showFavorites(){
+    setIsSearching(false)
+    setMovies(favoriteMovies)
+  }
+  function handleWatched(movie){
+    const alreadyWatched = watchedMovies.some((seen) => seen.id===movie.id)
+    if (alreadyWatched){
+      const updated = watchedMovies.filter(seen => seen.id !== movie.id)
+      setWatchedMovies(updated)
+    }
+    else{
+      setWatchedMovies([...watchedMovies, movie])
+    }
+  }
+  function showWatched(){
+    setIsSearching(false)
+    setMovies(watchedMovies)
+  }
   // This handles the logic behind sorting movies based on users preference.
   const sortedMovies = [...movies];
   if(sortOption==="title"){
@@ -77,26 +118,22 @@ export default function App() {
   useEffect(() => {
     fetchNowPlaying(1);
   }, [])
-  // rendering major components
+  // RENDERING
   return (
     <div className="App">
       <Header />
       {/* <NavBar/> */}
       {/* I created a div for the form input field, clear button and search button for better styling. */}
       <div className="searching">
-        <Search searched={handleSearch} clearSignal={clearSignal}/>
-        <div className="clear-container">
-          {isSearching && <button onClick={clearSearch} className="clear-btn">
-            Clear
-          </button>}
+        <div id="search-and-clear">
+          <Search searched={handleSearch} clearSignal={clearSignal}/>
+          <div className="clear-container">{isSearching && <button onClick={clearSearch} className="clear-btn">Clear</button>}</div>
         </div>
         <SortDropDown onSortDropDownChange={setSortOption}/>
       </div>
       <div className="wrapper">
-        <MovieList
-          results={sortedMovies}
-          sortBy={sortOption}
-        />
+        <SideBar onShowFavorites={showFavorites} goHome={goHomeFunc} onShowWatched={showWatched}/>
+        <MovieList results={sortedMovies} sortBy={sortOption} toggleFavorite={handleFavorite} toggleWatched={{handleWatched}} />
       </div>
       {/* I used conditional rendering to prevent load more button from appearing on the search results page */}
       <div className="load-more-container">{!isSearching && (<button onClick={loadMore} className="load-more">Load More</button>)}</div>
