@@ -40,19 +40,18 @@ export default function CardModal({movie, closeModal}){
   fetchMovieDetails(movie.id)
   return(
     <>
-      <div className="modal" onClick={closeModal}>
-        <div className="modal-content-container">
-          <div className="modal-content">
-            <span className="modal-movie-title">{movie.title}</span>
+      <div id="modal" onClick={closeModal}>
+        <div id="modal-content-container">
+          <div id="modal-content">
+            <span>{movie.title}</span>
             <div id="modal-movie-image-container">
-              <img className="modal-movie-image" src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`} alt={movie.title} /></div>
-            {/* add runtime to modal*/}
-            <span className="modal-movie-release"><strong>Release date: </strong>{movie.release_date}</span>
-            <span className="modal-movie-overview"><strong>Overview: </strong>{movie.overview}</span>
-            <span className="modal-movie-genres"><strong>Movie genre: </strong>{genre}</span>
-            <iframe width="560" height="315" src={`https://www.youtube.com/embed/${key}`} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-            <span className="modal-movie-runtime"><strong>Movie runtime: </strong>{runTime} mins</span>
-            <button className="close-btn" onClick={closeModal}>Close</button>
+              <img id="modal-movie-image" src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`} alt= {`${movie.title}`} /></div>
+            <span><strong>Release date: </strong>{movie.release_date}</span>
+            <span><strong>Overview: </strong>{movie.overview}</span>
+            <span><strong>Movie genre: </strong>{genre}</span>
+            <iframe id="trailer"width="560" height="315" src={`https://www.youtube.com/embed/${key}`} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <span><strong>Movie runtime: </strong>{runTime} mins</span>
+            <button id="close-btn" onClick={closeModal}>Close</button>
           </div>
         </div>
       </div>

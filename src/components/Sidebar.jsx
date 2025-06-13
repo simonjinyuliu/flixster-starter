@@ -4,7 +4,7 @@ export default function SideBar({onShowFavorites, goHome, onShowWatched}){
     <>
       <div id="side-bar">
         <div className="nav-btns">
-          <button onClick={goHome}>Home</button>
+          <button onClick={goHome}>Now Playing</button>
           <button onClick={onShowFavorites}>Favorite Movies</button>
           <button onClick={onShowWatched}>Watched Movies</button>
         </div>

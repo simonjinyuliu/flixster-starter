@@ -121,22 +121,22 @@ export default function App() {
   // RENDERING
   return (
     <div className="App">
-      <Header />
-      {/* <NavBar/> */}
+       <Header />
       {/* I created a div for the form input field, clear button and search button for better styling. */}
-      <div className="searching">
+      <hr></hr>
+      <div id="search-and-sort">
         <div id="search-and-clear">
           <Search searched={handleSearch} clearSignal={clearSignal}/>
           <div className="clear-container">{isSearching && <button onClick={clearSearch} className="clear-btn">Clear</button>}</div>
         </div>
         <SortDropDown onSortDropDownChange={setSortOption}/>
       </div>
-      <div className="wrapper">
+      <div id="wrapper">
         <SideBar onShowFavorites={showFavorites} goHome={goHomeFunc} onShowWatched={showWatched}/>
         <MovieList results={sortedMovies} sortBy={sortOption} toggleFavorite={handleFavorite} toggleWatched={{handleWatched}} />
       </div>
       {/* I used conditional rendering to prevent load more button from appearing on the search results page */}
-      <div className="load-more-container">{!isSearching && (<button onClick={loadMore} className="load-more">Load More</button>)}</div>
+      <div id="load-more-container">{!isSearching && (<button onClick={loadMore} id="load-more">Load More</button>)}</div>
       <Footer />
     </div>
   );

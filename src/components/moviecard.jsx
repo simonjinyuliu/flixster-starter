@@ -17,7 +17,7 @@ export default function MovieCard({movie, clicked, onFavorite, onWatched}){
     {/* This just displays the details of the movie from the results of the movies.map function in movielist.jsx */}
     <article className="movie-card" onClick={clicked}>
       <div className="image-container">
-        <span className="watched" onClick={watched}>{isWatched? "👀":"🫣"}</span>
+        <span className="watched" onClick={watched}>{isWatched? "👁️":"🫣"}</span>
         <img className="movie-image" src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} />
         <div className="movie-image-overlay">
           <span className="heart-color" onClick={favorited}>{isLiked? "❤️":"🤍"}</span>
