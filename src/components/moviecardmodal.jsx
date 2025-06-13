@@ -3,10 +3,11 @@ export default function CardModal({movie, closeModal}){
   const[key, setKey] = useState("")
   const[genre, setGenre] = useState("")
   const[runTime, setRunTime] = useState()
+  const API_KEY = import.meta.env.VITE_ACCESS_TOKEN_AUTH
   const options = {
       method: 'GET',
       headers: {
-        Authorization:"Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwOGQ0Y2IxMGM0ZDk2YzE3ZTA1ZjllZWM3YTQ2ZjRkYiIsIm5iZiI6MTc0OTMzMTM4MS4xMzkwMDAyLCJzdWIiOiI2ODQ0YWRiNTk5NjZiOTZhZmNkZTY4Y2UiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.qnXUxKkypgwqRges9xbxMxj0r5GfFfg3knk-9VjtIck",
+        Authorization:`Bearer ${API_KEY }`,
         accept: "application/json",
       },
     }
@@ -49,7 +50,7 @@ export default function CardModal({movie, closeModal}){
             <span><strong>Release date: </strong>{movie.release_date}</span>
             <span><strong>Overview: </strong>{movie.overview}</span>
             <span><strong>Movie genre: </strong>{genre}</span>
-            <iframe id="trailer"width="560" height="315" src={`https://www.youtube.com/embed/${key}`} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <iframe id="trailer"width="560" height="315" src={`https://www.youtube.com/embed/${key}`} title="YouTube video player"></iframe>
             <span><strong>Movie runtime: </strong>{runTime} mins</span>
             <button id="close-btn" onClick={closeModal}>Close</button>
           </div>

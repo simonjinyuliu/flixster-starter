@@ -18,11 +18,13 @@ export default function App() {
   const [favoriteMovies, setFavoriteMovies] = useState([])
   const [watchedMovies, setWatchedMovies] = useState([])
   const [isHome, setIsHome] = useState(false)
+  
   // This is used when fetching data from the TMDb api
+  const API_KEY = import.meta.env.VITE_ACCESS_TOKEN_AUTH
   const options = {
       method: 'GET',
       headers: {
-        Authorization:"Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwOGQ0Y2IxMGM0ZDk2YzE3ZTA1ZjllZWM3YTQ2ZjRkYiIsIm5iZiI6MTc0OTMzMTM4MS4xMzkwMDAyLCJzdWIiOiI2ODQ0YWRiNTk5NjZiOTZhZmNkZTY4Y2UiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.qnXUxKkypgwqRges9xbxMxj0r5GfFfg3knk-9VjtIck",
+        Authorization:`Bearer ${API_KEY}`,
         accept: "application/json",
       },
     }
