@@ -207,6 +207,9 @@ h2{
   display: flex;
   justify-content: center;
 }
+#sort-bar{
+  display: flex;
+}
 
 footer{
   display: flex;

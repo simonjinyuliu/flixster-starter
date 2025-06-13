@@ -131,7 +131,9 @@ export default function App() {
           <Search searched={handleSearch} clearSignal={clearSignal}/>
           <div className="clear-container">{isSearching && <button onClick={clearSearch} className="clear-btn">Clear</button>}</div>
         </div>
-        <SortDropDown onSortDropDownChange={setSortOption}/>
+        <div id="sort-bar">
+          <SortDropDown onSortDropDownChange={setSortOption}/>
+        </div>
       </div>
       <div id="wrapper">
         <SideBar onShowFavorites={showFavorites} goHome={goHomeFunc} onShowWatched={showWatched}/>
