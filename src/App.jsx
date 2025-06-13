@@ -133,7 +133,7 @@ export default function App() {
       </div>
       <div id="wrapper">
         <SideBar onShowFavorites={showFavorites} goHome={goHomeFunc} onShowWatched={showWatched}/>
-        <MovieList results={sortedMovies} sortBy={sortOption} toggleFavorite={handleFavorite} toggleWatched={{handleWatched}} />
+        <MovieList results={sortedMovies} sortBy={sortOption} toggleFavorite={handleFavorite} toggleWatched={handleWatched} />
       </div>
       {/* I used conditional rendering to prevent load more button from appearing on the search results page */}
       <div id="load-more-container">{!isSearching && (<button onClick={loadMore} id="load-more">Load More</button>)}</div>
