@@ -180,9 +180,9 @@ h2{
   height: 13rem;
   border: none;
 }
-.modal-movie-image{
+#modal-movie-image{
   border-radius: 1.35rem;
-  object-fit: cover;
+  object-fit: contain;
 }
 
 #modal-content-container{
