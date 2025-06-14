@@ -32,8 +32,6 @@ export default function App() {
     try {
       const response = await fetch(`https://api.themoviedb.org/3/movie/now_playing?page=${pageNum}`, options);
       const data = await response.json()
-      // console awareness check
-      console.log(data.results);
       setMovies((prevMovies) =>[...prevMovies, ...data.results])
     } catch (error) {
       console.error("Now playing movies fetch failed: ",error)

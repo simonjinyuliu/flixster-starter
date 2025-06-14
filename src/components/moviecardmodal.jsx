@@ -15,9 +15,7 @@ export default function CardModal({movie, closeModal}){
     try {
       const response = await fetch(`https://api.themoviedb.org/3/movie/${movie_id}/videos`, options);
       const data = await response.json()
-      // console awareness check
       const ytKey = data.results;
-      console.log(ytKey)
       const newArray= ytKey.filter(obj => obj.type==="Trailer")
       const videoKey = newArray[0].key 
       setKey(videoKey)
