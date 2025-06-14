@@ -2,7 +2,6 @@
   text-align: center;
   background-color: black;
 }
-
 .App-header {
   background-color: #282c34;
   display: flex;
@@ -12,7 +11,6 @@
   color: white;
   padding: 20px;
 }
-
 @media (max-width: 600px) {
   .movie-card {
     width: 100%;
@@ -63,26 +61,26 @@ select{
   border-right: solid #888;
 }
 .nav-btns{
-    display: flex; 
-    flex-direction: column;
-    color: white;
-   background-color: black;
-   border-right: solid #888;
-   margin-top: none;
-   gap: 2rem;
+  display: flex; 
+  flex-direction: column;
+  color: white;
+  background-color: black;
+  border-right: solid #888;
+  margin-top: none;
+  gap: 2rem;
 }
 .search-movie-list{
   display: flex;
 }
 .movie-list{
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
-    gap: 0.5rem;
-    background-color: black;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  gap: 0.5rem;
+  background-color: black;
      
 }
 #load-more-container{
@@ -97,47 +95,47 @@ select{
   color: black;
 }
 .movie-card{
-    position: relative;
-    margin: 20px;
-    display: flex;
-    height: 30.5rem;
-    width: 14rem;
-    align-items: center;
-    flex-direction: column;
-    box-sizing: border-box;
-    border: solid #888;
-    border-radius: 1.4rem;
-    cursor: pointer;
+  position: relative;
+  margin: 20px;
+  display: flex;
+  height: 30.5rem;
+  width: 14rem;
+  align-items: center;
+  flex-direction: column;
+  box-sizing: border-box;
+  border: solid #888;
+  border-radius: 1.4rem;
+  cursor: pointer;
 }
 .movie-card:hover{
-    border: none;
-    box-shadow: 10px 5px 5px #888;
-    transition: box-shadow 0.15s;
+  border: none;
+  box-shadow: 10px 5px 5px #888;
+  transition: box-shadow 0.15s;
 }
 .watched{
-    position: absolute;
-    top: 8px;
-    right: 8px;
-    font-size: 1.2rem;
-    font-weight: 900;
-    cursor: pointer;
-    color: white;
-    z-index: 1;
-    background-color: transparent;
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  font-size: 1.2rem;
+  font-weight: 900;
+  cursor: pointer;
+  color: white;
+  z-index: 1;
+  background-color: transparent;
 }
 #modal{
-   display: flex; 
-   position: fixed; 
-   z-index: 2; 
-   left: 0;
-   top: 0;
-   width: 100%; 
-   height: 100%; 
-   overflow: auto; 
-   background-color: rgba(140, 135, 135, 0.4); 
-   justify-content: center;
-   align-items: center;
-   border-radius: 10px;
+  display: flex; 
+  position: fixed; 
+  z-index: 2; 
+  left: 0;
+  top: 0;
+  width: 100%; 
+  height: 100%; 
+  overflow: auto; 
+  background-color: rgba(140, 135, 135, 0.4); 
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
 }
 #modal-content{
   display: flex;
@@ -185,7 +183,6 @@ h2{
   border-radius: 1.35rem;
   object-fit: contain;
 }
-
 #modal-content-container{
    display: flex;
    z-index: 1;
@@ -208,7 +205,6 @@ h2{
   display: flex;
   justify-content: center;
 }
-
 footer{
   display: flex;
   background-color: #888;
