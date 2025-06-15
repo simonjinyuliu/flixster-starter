@@ -31,4 +31,4 @@ export default function MovieCard({movie, clicked, onFavorite, onWatched}){
   </>
   )
 }
-//The MovieCard function also has a prop named "clicked" which is triggered when the movie card is clicked; It is helpful when setting up logic for the modal of the selected movie card.
+//The MovieCard component also has a prop named "clicked" which is triggered when the movie card is clicked; It is helpful when setting up logic for the modal of the selected movie card.

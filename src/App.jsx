@@ -127,7 +127,7 @@ export default function App() {
       <div id="search-and-sort">
         <div id="search-and-clear">
           <Search searched={handleSearch} clearSignal={clearSignal}/>
-          <div className="clear-container">{isSearching && <button onClick={clearSearch} className="clear-btn">Clear</button>}</div>
+          <div>{isSearching && <button onClick={clearSearch} id="clear-btn">Clear</button>}</div>
         </div>
         <div id="sort-bar">
           <SortDropDown onSortDropDownChange={setSortOption}/>
