@@ -1,26 +1,40 @@
-import {useState} from "react"
+import { useState } from "react"
 import MovieCard from "./moviecard"
 import CardModal from "./moviecardmodal"
-export default function MovieList({results, toggleFavorite, toggleWatched}){
+import { useModal } from "../hooks/useModal"
+
+export default function MovieList({ movies, onToggleFavorite, onToggleWatched }) {
   const [selectedMovie, setSelectedMovie] = useState({})
-  const [showModal, setShowModal] = useState(false);
-  function closeModal(){
+  const { isOpen, openModal, closeModal } = useModal()
+
+  const handleCloseModal = () => {
     setSelectedMovie({})
-    setShowModal(false);
+    closeModal()
   }
-  function openModal(movie){
+
+  const handleOpenModal = (movie) => {
     setSelectedMovie(movie)
-    setShowModal(true)
+    openModal()
   }
-  const movieCardElements = results.map((element, index) => (
-        <MovieCard key={index} movie={element} clicked={() => openModal(element)} onFavorite={toggleFavorite} onWatched={toggleWatched}/>
-      ))
+
   return (
-     <>
-      <main className="movie-list">
-        {movieCardElements}
-        {showModal &&  selectedMovie && (<CardModal movie={selectedMovie} closeModal={closeModal}/>)}
-      </main>
-    </>
+    <section className="movie-list">
+      {movies.map((movie, index) => (
+        <MovieCard
+          key={movie.id || index}
+          movie={movie}
+          onClick={() => handleOpenModal(movie)}
+          onFavorite={onToggleFavorite}
+          onWatched={onToggleWatched}
+        />
+      ))}
+      {isOpen && selectedMovie && (
+        <CardModal
+          movie={selectedMovie}
+          onClose={handleCloseModal}
+          isOpen={isOpen}
+        />
+      )}
+    </section>
   )
 }

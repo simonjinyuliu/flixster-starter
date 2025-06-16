@@ -1,59 +1,92 @@
-import { useState } from "react";
-export default function CardModal({movie, closeModal}){
-  const[key, setKey] = useState("")
-  const[genre, setGenre] = useState("")
-  const[runTime, setRunTime] = useState()
-  const API_KEY = import.meta.env.VITE_ACCESS_TOKEN_AUTH
-  const options = {
-      method: 'GET',
-      headers: {
-        Authorization:`Bearer ${API_KEY }`,
-        accept: "application/json",
-      },
+import { useState, useEffect } from "react";
+import { movieApi } from "../services/movieApi";
+
+export default function CardModal({ movie, onClose, isOpen }) {
+  const [key, setKey] = useState("");
+  const [genre, setGenre] = useState("");
+  const [runTime, setRunTime] = useState(null);
+
+  useEffect(() => {
+    // Handle ESC key press
+    const handleEscKey = (event) => {
+      if (event.key === 'Escape') {
+        onClose();
+      }
+    };
+
+    if (isOpen) {
+      document.addEventListener('keydown', handleEscKey);
     }
-    async function youtubeTrailer(movie_id){
-    try {
-      const response = await fetch(`https://api.themoviedb.org/3/movie/${movie_id}/videos`, options);
-      const data = await response.json()
-      const ytKey = data.results;
-      const newArray= ytKey.filter(obj => obj.type==="Trailer")
-      const videoKey = newArray[0].key 
-      setKey(videoKey)
-    } catch (error) {
-      console.error("YouTube trailer fetch failed: ",error)
+
+    const fetchMovieDetails = async () => {
+      try {
+        const data = await movieApi.fetchMovieDetails(movie.id);
+        setGenre(data.genres[0]?.name || "Unknown");
+        setRunTime(data.runtime);
+      } catch (error) {
+        console.error("Fetch movie details failed: ", error);
+      }
+    };
+
+    const fetchTrailer = async () => {
+      try {
+        const data = await movieApi.fetchMovieVideos(movie.id);
+        const trailers = data.results.filter(obj => obj.type === "Trailer");
+        if (trailers.length > 0) {
+          setKey(trailers[0].key);
+        }
+      } catch (error) {
+        console.error("YouTube trailer fetch failed: ", error);
+      }
+    };
+
+    fetchMovieDetails();
+    fetchTrailer();
+
+    // Cleanup function
+    return () => {
+      document.removeEventListener('keydown', handleEscKey);
+    };
+  }, [movie.id, isOpen, onClose]);
+
+  const handleModalClick = (e) => {
+    if (e.target.id === "modal") {
+      onClose();
     }
   };
-  youtubeTrailer(movie.id)
-  async function fetchMovieDetails(movie_id){
-    try{
-      const response = await fetch(`https://api.themoviedb.org/3/movie/${movie_id}`, options);
-      const data = await response.json()
-      const gen = data.genres[0].name
-      setGenre(gen)
-      setRunTime(data.runtime)
-    }
-    catch (error){
-      console.error("Fetch failed: ", error);
-    }
-  }
-  fetchMovieDetails(movie.id)
-  return(
-    <>
-      <div id="modal" onClick={closeModal}>
-        <div id="modal-content-container">
-          <div id="modal-content">
-            <span>{movie.title}</span>
-            <div id="modal-movie-image-container">
-              <img id="modal-movie-image" src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`} alt= {`${movie.title}`} /></div>
-            <span><strong>Release date: </strong>{movie.release_date}</span>
-            <span><strong>Overview: </strong>{movie.overview}</span>
-            <span><strong>Movie genre: </strong>{genre}</span>
-            <iframe id="trailer"width="560" height="315" src={`https://www.youtube.com/embed/${key}`} title="YouTube video player"></iframe>
-            <span><strong>Movie runtime: </strong>{runTime} mins</span>
-            <button id="close-btn" onClick={closeModal}>Close</button>
+
+  return (
+    <div id="modal" onClick={handleModalClick}>
+      <div id="modal-content-container">
+        <div id="modal-content">
+          <h2>{movie.title}</h2>
+          <div id="modal-movie-image-container">
+            <img
+              id="modal-movie-image"
+              src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`}
+              alt={movie.title}
+            />
           </div>
+          <div className="movie-details">
+            <p><strong>Release date: </strong>{movie.release_date}</p>
+            <p><strong>Overview: </strong>{movie.overview}</p>
+            <p><strong>Movie genre: </strong>{genre}</p>
+            <p><strong>Movie runtime: </strong>{runTime} mins</p>
+          </div>
+          {key && (
+            <iframe
+              id="trailer"
+              width="560"
+              height="315"
+              src={`https://www.youtube.com/embed/${key}`}
+              title="YouTube video player"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
+          )}
+          <button id="close-btn" onClick={onClose}>Close</button>
         </div>
       </div>
-    </>
-  )
+    </div>
+  );
 }
