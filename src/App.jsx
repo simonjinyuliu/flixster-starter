@@ -2,9 +2,9 @@ import { useEffect } from "react";
 import "./App.css";
 import Header from "./components/Header.jsx";
 import Footer from "./components/Footer.jsx";
-import SearchSort from "./components/SearchSort.jsx";
+import SearchSort from "./components/presentational/SearchSort.jsx";
 import SideBar from "./components/Sidebar.jsx";
-import MovieList from "./components/movielist.jsx";
+import MovieListContainer from "./components/containers/MovieListContainer.jsx";
 import { useMovies } from "./hooks/useMovies";
 
 export default function App() {
@@ -61,7 +61,7 @@ export default function App() {
           onShowWatched={showWatched}
         />
         <div className="content-area">
-          <MovieList
+          <MovieListContainer
             movies={movies}
             onToggleFavorite={toggleFavorite}
             onToggleWatched={toggleWatched}
